@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 public abstract class Generation<T extends Individual> {
 
-  protected int size;
+  private int size;
 
   protected List<T> population;
 
   public Generation( int size){
-    this.size = size;
+    this.setSize( size );
     this.population = new ArrayList<>(size);
   }
 
@@ -35,5 +35,13 @@ public abstract class Generation<T extends Individual> {
   public String display() {
     int[] index = { 1 };
     return population.stream().map( individual -> index[0]++ + ": " + individual.display() + "\n" ).collect( Collectors.joining() );
+  }
+
+  public int getSize() {
+    return size;
+  }
+
+  public void setSize( int size ) {
+    this.size = size;
   }
 }

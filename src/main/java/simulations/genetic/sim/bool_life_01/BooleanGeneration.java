@@ -1,4 +1,4 @@
-package simulations.genetic.sim.bool_01_refactored;
+package simulations.genetic.sim.bool_life_01;
 
 import simulations.genetic.base.Gene;
 import simulations.genetic.base.Generation;
@@ -27,15 +27,12 @@ public class BooleanGeneration extends Generation<BooleanIndividual> {
   @Override
   public Generation reproduce() {
     Generation pop_child = new BooleanGeneration( getSize( ) );
-    pop_child.add( population.get( 0 ) ); // Keep first
-    pop_child.add( cross_over( population.get( 0 ), population.get( 1 ) ) ); // Cross best characteristics
-    pop_child.add( cross_over( population.get( 0 ), population.get( 2 ) ) ); // Cross best characteristics
-    pop_child.add( cross_over( population.get( 1 ), population.get( 2 ) ) ); // Cross best characteristics
-    // Generate only the remaining
-    for ( int i = pop_child.getPopulation().size() ; i < getSize( ) ; i++ ) {
-      pop_child.add( generateIndividual());
+    while (pop_child.getPopulation().size() < getSize( ) ) {
+      Individual parent_1 = getPopulation().get( ThreadLocalRandom.current().nextInt( 0 , getPopulation().size() ));
+      Individual parent_2 = getPopulation().get( ThreadLocalRandom.current().nextInt( 0 , getPopulation().size() ));
+      Individual individual = cross_over( parent_1 , parent_2 );
+      pop_child.add( individual );
     }
-    // apply  some mutations
     pop_child.mutate();
     return pop_child;
   }
@@ -53,16 +50,17 @@ public class BooleanGeneration extends Generation<BooleanIndividual> {
     BooleanIndividual individu = new BooleanIndividual();
     BooleanGene[] genes = new BooleanGene[8];
     for ( int i = 0 ; i < genes.length ; i++ ) {
-      genes[i] = new BooleanGene(Math.random() >= 0.5 ? 1:0);
+      genes[i] = new BooleanGene( ThreadLocalRandom.current().nextBoolean() );
     }
     individu.setGenes( genes );
     return individu;
   }
 
   /**
-   * Simple cross over take half booleanGenes from each
+   * Simple cross
+   * 4 MSB from parent 1, 4 LSB from parent 2
    */
-  private BooleanIndividual cross_over( Individual parent_1, Individual parent_2) {
+  private BooleanIndividual cross_over( Individual<BooleanGene> parent_1, Individual<BooleanGene> parent_2) {
     int geneLength = parent_1.getGenes().length;
     BooleanIndividual children = new BooleanIndividual();
     Gene[] genes = new BooleanGene[geneLength];
@@ -79,19 +77,16 @@ public class BooleanGeneration extends Generation<BooleanIndividual> {
   }
 
   /**
-   * For each individual change 1 gene
+   * For each individual change 1 gene sometimes not always
    */
   public void mutate() {
-    for ( int i = 0 ; i < population.size(); i++ ) {
-      BooleanIndividual child = population.get( i );
-      // Mutate 1 booleanGene
-      int geneNumber = ThreadLocalRandom.current( ).nextInt( 0 , child.getGenes().length );
-      BooleanGene booleanGene = child.getGenes()[geneNumber];
-      if ( booleanGene.level == 0 ) {
-        booleanGene.level = 1;
-      }
-      else {
-        booleanGene.level = 0;
+    for ( BooleanIndividual child : population ) {
+      // 1/2 times mutation
+      if (ThreadLocalRandom.current().nextBoolean()) {
+        // Mutate 1 booleanGene
+        int geneNumber = ThreadLocalRandom.current( ).nextInt( 0 , child.getGenes( ).length );
+        BooleanGene booleanGene = child.getGenes( )[ geneNumber ];
+        booleanGene.gene = ! booleanGene.gene;
       }
     }
   }
