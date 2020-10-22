@@ -1,4 +1,4 @@
-package simulations.genetic.base;
+package simulations.genetic.sim.rabbitcat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,9 @@ public class World {
     population.add( individual );
   }
 
+  public void remove(Individual individual) {
+    population.remove( individual );
+  }
 
   public String display() {
     int[] index = { 1 };

@@ -1,4 +1,4 @@
-package simulations.genetic.rabbitcat;
+package simulations.genetic.sim.bool_01;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +17,10 @@ public class World {
   }
 
 
-  public void add(Individual individual) {
+  public void add( Individual individual) {
     population.add( individual );
   }
 
-  public void remove(Individual individual) {
-    population.remove( individual );
-  }
 
   public String display() {
     int[] index = { 1 };

@@ -1,6 +1,4 @@
-package simulations.genetic.rabbitcat;
-
-import java.util.Comparator;
+package simulations.genetic.sim.rabbitcat;
 
 /**
  *
@@ -15,7 +13,7 @@ public class Fitness {
 //  // WRONG : DO I need to calculate ?
 //  private static int compute( Individual individual ) {
 //    int score = 0;
-//    for(Gene gene : individual.genes) {
+//    for(BooleanGene gene : individual.booleanGenes) {
 //      score += gene.velocity;
 //    }
 //    individual.score = score;

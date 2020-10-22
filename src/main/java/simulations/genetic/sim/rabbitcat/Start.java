@@ -1,4 +1,4 @@
-package simulations.genetic.rabbitcat;
+package simulations.genetic.sim.rabbitcat;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -77,7 +77,7 @@ public class Start {
   }
 
   /**
-   * Simple cross over take half genes from each
+   * Simple cross over take half booleanGenes from each
    */
   static Individual cross_over( Individual parent_1, Individual parent_2) {
     return new Individual(parent_1.velocity, parent_2.smell);

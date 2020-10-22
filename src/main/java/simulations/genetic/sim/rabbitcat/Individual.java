@@ -1,8 +1,4 @@
-package simulations.genetic.rabbitcat;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+package simulations.genetic.sim.rabbitcat;
 
 public class Individual {
 
@@ -15,7 +11,7 @@ public class Individual {
   }
 
 //  public String display() {
-//    return genes.stream().map( Gene::display ).collect( Collectors.joining() );
+//    return booleanGenes.stream().map( BooleanGene::display ).collect( Collectors.joining() );
 //  }
 
   public String display() {

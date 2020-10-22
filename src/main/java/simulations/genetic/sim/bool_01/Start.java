@@ -1,6 +1,6 @@
-package simulations.genetic.base;
+package simulations.genetic.sim.bool_01;
 
-import java.util.*;
+import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -34,7 +34,7 @@ public class Start {
 
   static boolean goal_ok( World world ) {
     for ( int i = 0 ; i < world.population.size(); i++ ) {
-      for (Individual child : world.population) {
+      for ( Individual child : world.population) {
         if (child.score == FITNESS_GOAL) {
           return true;
         }
@@ -82,9 +82,9 @@ public class Start {
   }
 
   /**
-   * Simple cross over take half genes from each
+   * Simple cross over take half booleanGenes from each
    */
-  static Individual cross_over(Individual parent_1, Individual parent_2) {
+  static Individual cross_over( Individual parent_1, Individual parent_2) {
     Individual crossed = new Individual();
     for ( int i = 0 ; i < GENOME_SIZE ; i++ ) {
       if (i < Math.round( GENOME_SIZE / 2 )) {
@@ -102,7 +102,7 @@ public class Start {
    */
   static void mutation( World world ) {
     for ( int i = 0 ; i < world.population.size(); i++ ) {
-      for (Individual child : world.population) {
+      for ( Individual child : world.population) {
         // Mutate 1 gene
         Gene gene = child.genes.get( ThreadLocalRandom.current().nextInt(0, child.genes.size()) );
         if (gene.level == 0) {
@@ -125,9 +125,9 @@ public class Start {
   };
 
 
-  public static int compute_fitness(Individual individual) {
+  public static int compute_fitness( Individual individual) {
     int score = 0;
-    for(Gene gene : individual.genes) {
+    for( Gene gene : individual.genes) {
       score += gene.level;
     }
     individual.score = score;
@@ -142,9 +142,9 @@ public class Start {
     return individu;
   }
 
-//  public static World generate_population(long duration) {
+//  public static BooleanGeneration generate_population(long duration) {
 //    long end = System.currentTimeMillis() + duration;
-//    World population = new World();
+//    BooleanGeneration population = new BooleanGeneration();
 //    while ( System.currentTimeMillis() < end ) {
 //      population.add(generate_individual());
 //    }

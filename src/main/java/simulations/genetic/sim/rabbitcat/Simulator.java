@@ -1,4 +1,4 @@
-package simulations.genetic.rabbitcat;
+package simulations.genetic.sim.rabbitcat;
 
 /**
  * A world of 100 x 100

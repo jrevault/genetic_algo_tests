@@ -5,25 +5,22 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Individual {
+public abstract class Individual<T extends Gene> {
 
-  public int score = 0;
-
-  public List<Gene> genes;
+  protected T[] genes;
 
   public Individual(){
-    this.genes = new ArrayList<>();
   }
 
-  public Individual(int genesCount){
-    this.genes = new ArrayList<>(genesCount);
+  public Individual(T[] genes){
+    this.genes = genes;
   }
 
-  public void add(Gene gene) {
-    genes.add( gene );
+  public abstract T[] getGenes();
+
+  public void setGenes(T[] genes) {
+    this.genes = genes;
   }
 
-  public String display() {
-    return genes.stream().map( el -> el.display() ).collect( Collectors.joining() );
-  }
+  public abstract String display();
 }

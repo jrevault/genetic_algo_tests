@@ -1,4 +1,4 @@
-package simulations.genetic.rabbitcat;
+package simulations.genetic.sim.rabbitcat;
 
 public class Gene {
 
