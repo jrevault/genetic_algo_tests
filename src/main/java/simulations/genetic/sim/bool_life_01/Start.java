@@ -23,7 +23,7 @@ public class Start {
     int[] r_goal = new int[NUMBER_OF_SIMULATIONS];
 
     for ( int i = 0 ; i < NUMBER_OF_SIMULATIONS ; i++ ) {
-      BooleanGeneration generation = new BooleanGeneration( POPULATION_SIZE );
+      Generation<BooleanIndividual> generation = new BooleanGeneration( POPULATION_SIZE );
       // Generate initial world
       generation.generate( );
       int generationNum = 0;
@@ -31,12 +31,12 @@ public class Start {
       generation.getPopulation( ).sort( BooleanFitness.comparator );
       // display
       //System.out.println( generation.display( ) );
-      // is fitness goal achived ?
+      // is fitness goal achieved ?
       int goal = goal_ok( generation );
 //      System.out.println( "Population left " + generation.getPopulation( ).size() );
 
       while ( goal == 2 ) {
-        generation = ( BooleanGeneration ) generation.reproduce( );
+        generation = generation.reproduce( );
         // compute score of each individual and sort
         generation.getPopulation( ).sort( BooleanFitness.comparator );
         // display

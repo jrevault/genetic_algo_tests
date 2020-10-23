@@ -3,22 +3,22 @@ package simulations.genetic.base;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public abstract class Individual<T> {
+public abstract class Individual<G> {
 
-  protected T[] genes;
+  protected G[] genes;
 
   public Individual(){
   }
 
-  public Individual(T[] genes){
+  public Individual(G[] genes){
     this.genes = genes;
   }
 
-  public T[] getGenes() {
+  public G[] getGenes() {
     return genes;
   }
 
-  public void setGenes(T[] genes) {
+  public void setGenes(G[] genes) {
     this.genes = genes;
   }
 

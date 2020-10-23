@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Generation<T extends Individual> {
+public abstract class Generation<I extends Individual> {
 
   private int size;
 
-  protected List<T> population;
+  protected List<I> population;
 
   public Generation( int size){
     this.setSize( size );
@@ -29,11 +29,11 @@ public abstract class Generation<T extends Individual> {
   }
 
   /** Generates individuals ex-nihilo */
-  public List<T> getPopulation() {
+  public List<I> getPopulation() {
     return population;
   }
 
-  public void add(T individual) {
+  public void add(I individual) {
     population.add( individual );
   }
 

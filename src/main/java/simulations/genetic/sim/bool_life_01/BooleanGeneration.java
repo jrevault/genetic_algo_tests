@@ -24,12 +24,12 @@ public class BooleanGeneration extends Generation<BooleanIndividual> {
    * Last are randoms
    */
   @Override
-  public Generation reproduce() {
-    Generation pop_child = new BooleanGeneration( getSize( ) );
+  public BooleanGeneration reproduce() {
+    BooleanGeneration pop_child = new BooleanGeneration( getSize( ) );
     while (pop_child.getPopulation().size() < getSize( ) ) {
-      Individual parent_1 = getPopulation().get( ThreadLocalRandom.current().nextInt( 0 , getPopulation().size() ));
-      Individual parent_2 = getPopulation().get( ThreadLocalRandom.current().nextInt( 0 , getPopulation().size() ));
-      Individual individual = cross_over( parent_1 , parent_2 );
+      BooleanIndividual parent_1 = getPopulation().get( ThreadLocalRandom.current().nextInt( 0 , getPopulation().size() ));
+      BooleanIndividual parent_2 = getPopulation().get( ThreadLocalRandom.current().nextInt( 0 , getPopulation().size() ));
+      BooleanIndividual individual = cross_over( parent_1 , parent_2 );
       pop_child.add( individual );
     }
     pop_child.mutate();
