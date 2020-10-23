@@ -1,11 +1,9 @@
 package simulations.genetic.base;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public abstract class Individual<T extends Gene> {
+public abstract class Individual<T> {
 
   protected T[] genes;
 
@@ -16,11 +14,15 @@ public abstract class Individual<T extends Gene> {
     this.genes = genes;
   }
 
-  public abstract T[] getGenes();
+  public T[] getGenes() {
+    return genes;
+  }
 
   public void setGenes(T[] genes) {
     this.genes = genes;
   }
 
-  public abstract String display();
+  public String display() {
+    return Arrays.stream( genes ).map( el -> el.toString() ).collect( Collectors.joining() );
+  }
 }

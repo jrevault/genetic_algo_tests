@@ -18,13 +18,12 @@ public class BooleanFitness {
 
   // just the sum of the genes
   private static int compute( BooleanIndividual individual ) {
-    int score = 0;
     String binaryString = "";
-    for( BooleanGene gene : individual.getGenes()) {
-      binaryString += gene.display();
+    for( Boolean gene : individual.getGenes()) {
+      binaryString += gene? "1" : "0";
     }
     individual.score = Integer.parseInt(binaryString,2);
-    return score;
+    return individual.score;
   }
 
 

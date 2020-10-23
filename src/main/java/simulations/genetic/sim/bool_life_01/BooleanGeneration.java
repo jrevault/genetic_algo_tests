@@ -1,6 +1,5 @@
 package simulations.genetic.sim.bool_life_01;
 
-import simulations.genetic.base.Gene;
 import simulations.genetic.base.Generation;
 import simulations.genetic.base.Individual;
 
@@ -48,9 +47,9 @@ public class BooleanGeneration extends Generation<BooleanIndividual> {
 
   public static BooleanIndividual generateIndividual() {
     BooleanIndividual individu = new BooleanIndividual();
-    BooleanGene[] genes = new BooleanGene[8];
+    Boolean[] genes = new Boolean[8];
     for ( int i = 0 ; i < genes.length ; i++ ) {
-      genes[i] = new BooleanGene( ThreadLocalRandom.current().nextBoolean() );
+      genes[i] = ThreadLocalRandom.current().nextBoolean();
     }
     individu.setGenes( genes );
     return individu;
@@ -60,19 +59,19 @@ public class BooleanGeneration extends Generation<BooleanIndividual> {
    * Simple cross
    * 4 MSB from parent 1, 4 LSB from parent 2
    */
-  private BooleanIndividual cross_over( Individual<BooleanGene> parent_1, Individual<BooleanGene> parent_2) {
+  private BooleanIndividual cross_over( Individual<Boolean> parent_1, Individual<Boolean> parent_2) {
     int geneLength = parent_1.getGenes().length;
     BooleanIndividual children = new BooleanIndividual();
-    Gene[] genes = new BooleanGene[geneLength];
+    Boolean[] genes = new Boolean[geneLength];
     for ( int i = 0 ; i < geneLength ; i++ ) {
-      if (i < Math.round( geneLength / 2 )) {
+      if (i < geneLength / 2) {
         genes[i] = parent_2.getGenes()[i];
       }
       else {
         genes[i] = parent_1.getGenes()[i];
       }
     }
-    children.setGenes( ( BooleanGene[] ) genes );
+    children.setGenes( genes );
     return children;
   }
 
@@ -83,10 +82,9 @@ public class BooleanGeneration extends Generation<BooleanIndividual> {
     for ( BooleanIndividual child : population ) {
       // 1/2 times mutation
       if (ThreadLocalRandom.current().nextBoolean()) {
-        // Mutate 1 booleanGene
+        // Mutate 1 random gene
         int geneNumber = ThreadLocalRandom.current( ).nextInt( 0 , child.getGenes( ).length );
-        BooleanGene booleanGene = child.getGenes( )[ geneNumber ];
-        booleanGene.gene = ! booleanGene.gene;
+        child.getGenes( )[ geneNumber ] = ! child.getGenes( )[ geneNumber ];
       }
     }
   }

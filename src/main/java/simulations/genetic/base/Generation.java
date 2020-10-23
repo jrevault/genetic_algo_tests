@@ -15,9 +15,26 @@ public abstract class Generation<T extends Individual> {
     this.population = new ArrayList<>(size);
   }
 
+  public int getSize() {
+    return size;
+  }
+
+  public void setSize( int size ) {
+    this.size = size;
+  }
+
+  public String display() {
+    int[] index = { 1 };
+    return population.stream().map( individual -> index[0]++ + ": " + individual.display() + "\n" ).collect( Collectors.joining() );
+  }
+
   /** Generates individuals ex-nihilo */
   public List<T> getPopulation() {
     return population;
+  }
+
+  public void add(T individual) {
+    population.add( individual );
   }
 
   /** Generates individuals ex-nihilo */
@@ -26,22 +43,6 @@ public abstract class Generation<T extends Individual> {
   /** Reproduction between individuals (cross over, mutations..) */
   public abstract Generation reproduce();
 
-  public void add(T individual) {
-    population.add( individual );
-  }
-
   public abstract void mutate();
 
-  public String display() {
-    int[] index = { 1 };
-    return population.stream().map( individual -> index[0]++ + ": " + individual.display() + "\n" ).collect( Collectors.joining() );
-  }
-
-  public int getSize() {
-    return size;
-  }
-
-  public void setSize( int size ) {
-    this.size = size;
-  }
 }
