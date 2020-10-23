@@ -120,24 +120,14 @@ public class Vector {
   }
 
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final Vector other = (Vector) obj;
-    if (Math.abs(x - other.x) > COMPARISON_TOLERANCE) {
-      return false;
-    }
-    if (Math.abs(y - other.y) > COMPARISON_TOLERANCE) {
-      return false;
-    }
-    return true;
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Vector t = (Vector) o;
+    return (
+        Math.abs(x - t.x) <= COMPARISON_TOLERANCE &&
+        Math.abs(y - t.y) <= COMPARISON_TOLERANCE
+    );
   }
 
   @Override

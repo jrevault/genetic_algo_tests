@@ -2,7 +2,7 @@ package cg.utils;
 
 public class Timer {
   private long startTime = 0;
-  private long timeout=0;
+  private long timeout = 0;
 
   /**
    * @return

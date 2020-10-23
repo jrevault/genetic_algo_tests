@@ -1,19 +1,20 @@
 package cg.utils;
 
-public class Pair<F, S> {
-  private final F first;
-  private final S second;
+public class Pair<K, V> {
 
-  public Pair(F first, S second) {
-    this.first = first;
-    this.second = second;
+  private final K key;
+  private final V value;
+
+  public Pair(K key, V value) {
+    this.key = key;
+    this.value = value;
   }
 
-  public S getSecond() {
-    return second;
+  public K getKey() {
+    return key;
   }
 
-  public F getFirst() {
-    return first;
+  public V getValue() {
+    return value;
   }
 }
